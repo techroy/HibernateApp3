@@ -3,12 +3,20 @@ package com.hibernateapp3.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
 @Table(name = "Book")
+@NamedQueries(value={
+		
+		@NamedQuery(name="selectBookQuery",query="from BookBean"),
+		@NamedQuery(name="updatBookQuery",query="update BookBean set name=? where id=?")
+		
+})
 public class BookBean {
 
 	private String name;
@@ -68,5 +76,12 @@ public class BookBean {
 	public void setMarketPrice(String marketPrice) {
 		this.marketPrice = marketPrice;
 	}
+
+	@Override
+	public String toString() {
+		return "BookBean [name=" + name + ", price=" + price + ", id=" + id + ", vercol=" + vercol + ", marketPrice="
+				+ marketPrice + "]";
+	}
+	
 
 }

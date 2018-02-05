@@ -1,34 +1,37 @@
 package com.hibernateapp3.test;
 
+import java.util.Iterator;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import com.hibernateapp3.cfg.HibernateConfiguration;
 import com.hibernateapp3.model.EmployeeBean;
 
-public class Test {
+public class Test6 {
 
 	public static void main(String[] args) {
-		
-		
+
 		SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
-		
 		Session session = HibernateConfiguration.getSession(sessionFactory);
+
+		Query query = session.createQuery("from EmployeeBean");
 		
-		Transaction tx  = session.beginTransaction();
 		
-		EmployeeBean employeeBean = new EmployeeBean();
-		//employeeBean.setEid(15);
-		employeeBean.setEname("Sam");
-		employeeBean.setEsal(200.00f);
+		Iterator<EmployeeBean> it = query.iterate();
 		
-		session.save(employeeBean);
-		
-		tx.commit();
+		System.out.println("---------------");
+		while(it.hasNext()){
+			
+			System.out.println(it.next());
+		}
 		
 		session.close();
 		sessionFactory.close();
+		
+		
+		
 		
 
 	}

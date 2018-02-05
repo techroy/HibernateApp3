@@ -14,8 +14,12 @@
 		<property name="format_sql">true</property>
 		<property name="hibernate.connection.pool_size">10</property>
 
-		<mapping class="com.hibernateapp3.model.EmployeeBean" />
+	 <mapping resource="employee.hbm.xml"></mapping>  
+	<!--  <mapping class="com.hibernateapp3.model.EmployeeBean" />
 		<mapping class="com.hibernateapp3.model.BookBean" />
+		<mapping class="com.hibernateapp3.model.ProductBean" />
+		<mapping class="com.hibernateapp3.model.CourseBean" />-->
+	
 
 	</session-factory>
 </hibernate-configuration>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.hibernateapp3.model.EmployeeBean" table="Employee">
+
+		<id name="eid" column="id" />
+
+		<property name="ename" column="name" />
+		<property name="esal" column="sal" />
+
+	</class>
+	
+	<query name="empSelectQuery">
+	
+				<![CDATA[
+				
+						from EmployeeBean where eid>=? and eid <=?
+				]]>
+	</query>
+	
+	
+	<query name="empUpdateQuery">
+	
+				update EmployeeBean set ename=:name where eid=:eid 
+				
+	</query>
+	
+	<sql-query name="sqlEmpSelectQuery">
+	
+			select * from Employee where id=?
+	</sql-query>
+	
+
+</hibernate-mapping>

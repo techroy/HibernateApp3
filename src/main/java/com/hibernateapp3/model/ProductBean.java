@@ -2,6 +2,12 @@ package com.hibernateapp3.model;
 
 import java.io.Serializable;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Product")
 public class ProductBean implements Serializable {
 
 	/**
@@ -9,26 +15,17 @@ public class ProductBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 2883519749794052667L;
 
-	private int id;
-
-	private String name;
+	@EmbeddedId
+	private ProductKeyBean productKeyBean;
 
 	private String price;
 
-	public int getId() {
-		return id;
+	public ProductKeyBean getProductKeyBean() {
+		return productKeyBean;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setProductKeyBean(ProductKeyBean productKeyBean) {
+		this.productKeyBean = productKeyBean;
 	}
 
 	public String getPrice() {
@@ -41,9 +38,9 @@ public class ProductBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ProductBean [id=" + id + ", name=" + name + ", price=" + price + "]";
+		return "ProductBean [productKeyBean=" + productKeyBean + ", price=" + price + "]";
 	}
-	
+
 	
 
 }
