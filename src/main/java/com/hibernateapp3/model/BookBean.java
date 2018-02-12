@@ -3,6 +3,8 @@ package com.hibernateapp3.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -14,8 +16,12 @@ import javax.persistence.Version;
 @NamedQueries(value={
 		
 		@NamedQuery(name="selectBookQuery",query="from BookBean"),
-		@NamedQuery(name="updatBookQuery",query="update BookBean set name=? where id=?")
+		@NamedQuery(name="updatBookQuery",query="update BookBean set name=? where id=?"),
 		
+		
+})
+@NamedNativeQueries(value={
+		@NamedNativeQuery(name="bookStoreProc",query="call GetBooks(?)",resultClass=BookBean.class)
 })
 public class BookBean {
 
